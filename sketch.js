@@ -1,17 +1,39 @@
-var marks = [40,35,45,38,40]; //total items=5
-//           0   1  2  3  4     index
-//array.length-no of elements in an array
+var sea,ship;
+var seaImg,shipImg;
 
-function score_average(){
-  var sum = marks[0]+marks[1]+marks[2]+marks[3]+marks[4];
-  console.log(sum)
-  console.log(sum/marks.length)
+function preload(){
+  shipImg = loadAnimation("ship-1.png","ship-2.png","ship-1.png","ship-2.png");
+  
+  seaImg = loadImage("sea.png");
 }
-function setup() {
-  createCanvas(400, 400);
-  score_average()
+
+function setup(){
+  createCanvas(400,400);
+  background("blue");
+
+  sea=createSprite(400,200);
+  sea.addImage(seaImg);
+  sea.velocityX = -5;
+  sea.scale=0.3;
+
+  
+  ship = createSprite(130,200,30,30);
+  ship.addAnimation("movingShip",shipImg);
+  ship.scale =0.25;
+  
 }
 
 function draw() {
-  background(220);
+  background(0);
+  sea.velocityX = -3;
+
+  if(sea.x < 0){
+    sea.x = 0;
+    sea.x = sea.width;
+    sea.x = sea.width/8;
+  
+  }
+
+ 
+  drawSprites();
 }
